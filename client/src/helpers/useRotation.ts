@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Euler } from 'three';
 
 export const useRotation = () => {
   const [rotation, setRotation] = useState([0, 0, 0]);

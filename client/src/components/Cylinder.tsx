@@ -1,48 +1,25 @@
 import { Euler } from 'three';
+import { useCustomContext } from '../context';
 import { useRotation } from '../helpers/useRotation';
-import * as THREE from 'three';
+import { cylinderGeometryArgs } from '../types/types';
 
 const Cylinder = () => {
   const { rotation } = useRotation();
+  const { randomValue } = useCustomContext();
 
-  type cylinderGeometryArgs = {
-    radiusTop: number;
-    radiusBottom: number;
-    height: number;
-    radialSegments: number;
-    heightSements: number;
-  };
-
-  const geometryArgs: cylinderGeometryArgs = {
+  const geometryArgsCylinder: cylinderGeometryArgs = {
     radiusTop: 1,
     radiusBottom: 1,
-    height: 1,
-    radialSegments: 64,
-    heightSements: 64,
+    height: randomValue,
+    radialSegments: 24,
+    heightSements: 24,
   };
 
-  const vertexShader = `
-  varying vec2 vUv;
-  void main() {
-    vUv = uv;
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-  }
-`;
-
-  const fragmentShader = `
-  uniform vec3 color1;
-  uniform vec3 color2;
-  varying vec2 vUv;
-  void main() {
-    gl_FragColor = vec4(mix(color1, color2, vUv.y), 1.0);
-  }
-`;
-
   return (
-    <mesh rotation={new Euler(...rotation)} position={[3, 0, 0]} castShadow>
-      <cylinderBufferGeometry args={[...Object.values(geometryArgs)]} />
+    <mesh rotation={new Euler(...rotation)} position={[5, 0, 0]} castShadow>
+      <cylinderBufferGeometry args={Object.values(geometryArgsCylinder)} />
       <meshPhysicalMaterial
-        color='#360033'
+        color='#077252'
         roughness={0.5}
         metalness={0.5}
         wireframe={true}

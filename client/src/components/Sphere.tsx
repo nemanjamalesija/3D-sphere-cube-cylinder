@@ -1,21 +1,21 @@
 import { useTexture } from '@react-three/drei';
 import { useRotation } from '../helpers/useRotation';
 import { Euler } from 'three';
-
-type SphereGeometryArgs = {
-  radius: number;
-};
-
-const sphereGeometryArgs: SphereGeometryArgs = {
-  radius: 1,
-};
+import { useCustomContext } from '../context';
+import { sphereGeometryArgs } from '../types/types';
 
 function Sphere() {
   const texture = useTexture('/textureSphere.png');
   const { rotation } = useRotation();
+  const { randomValue } = useCustomContext();
+
+  const geometryArgsSphere: sphereGeometryArgs = {
+    radius: randomValue,
+  };
+
   return (
     <mesh rotation={new Euler(...rotation)} position={[-1, 0, 0]} castShadow>
-      <sphereBufferGeometry args={[...Object.values(sphereGeometryArgs)]} />
+      <sphereBufferGeometry args={[...Object.values(geometryArgsSphere)]} />
       <meshPhysicalMaterial
         map={texture}
         clearcoat={1}

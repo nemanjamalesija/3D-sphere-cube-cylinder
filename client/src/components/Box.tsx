@@ -1,27 +1,21 @@
-import React, { useState } from 'react';
 import { Euler } from 'three';
+import { useCustomContext } from '../context';
 import { useRotation } from '../helpers/useRotation';
-
-type boxGeometryArgs = {
-  width: number;
-  height: number;
-  depth: number;
-};
-
-const geometryArgs: boxGeometryArgs = {
-  width: 1.5,
-  height: 1.5,
-  depth: 1.5,
-};
+import { boxGeometryArgs } from '../types/types';
 
 const Box = () => {
   const { rotation } = useRotation();
+  const { randomValue } = useCustomContext();
+
+  const geometryArgsBox: boxGeometryArgs = {
+    width: randomValue,
+  };
 
   return (
-    <mesh rotation={new Euler(...rotation)} position={[-4.5, 0, 0]} castShadow>
+    <mesh rotation={new Euler(...rotation)} position={[-8, 0, 0]} castShadow>
       <boxBufferGeometry
         attach='geometry'
-        args={[...Object.values(geometryArgs)]}
+        args={Object.values(geometryArgsBox)}
       />
       <meshNormalMaterial attach='material' />
     </mesh>
