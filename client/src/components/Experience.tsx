@@ -1,5 +1,6 @@
 import { Stage, OrbitControls } from '@react-three/drei';
 import Box from './Box';
+import Sphere from './Sphere';
 
 const Experience = () => {
   return (
@@ -15,6 +16,7 @@ const Experience = () => {
         }}
       >
         <Box />
+        <Sphere />
       </Stage>
       <OrbitControls
         makeDefault

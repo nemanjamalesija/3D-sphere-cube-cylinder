@@ -1,33 +1,24 @@
 import React, { useState } from 'react';
-import { useFrame } from '@react-three/fiber';
 import { Euler } from 'three';
+import { useRotation } from '../helpers/useRotation';
 
-type BoxGeometryArgs = {
+type boxGeometryArgs = {
   width: number;
   height: number;
   depth: number;
 };
 
-const geometryArgs: BoxGeometryArgs = {
-  width: 1.8,
-  height: 1.8,
-  depth: 1.8,
+const geometryArgs: boxGeometryArgs = {
+  width: 1.5,
+  height: 1.5,
+  depth: 1.5,
 };
 
 const Box = () => {
-  const [rotation, setRotation] = useState([0, 0, 0]);
-
-  useFrame((state, delta) => {
-    // Update the Y-axis rotation based on elapsed time
-    setRotation([
-      0,
-      rotation[1] + delta * 0.8, // adjust the speed as desired
-      0,
-    ]);
-  });
+  const { rotation } = useRotation();
 
   return (
-    <mesh rotation={new Euler(...rotation)} position={[-1, 0, 0]} castShadow>
+    <mesh rotation={new Euler(...rotation)} position={[-2.5, 0, 0]} castShadow>
       <boxBufferGeometry
         attach='geometry'
         args={[...Object.values(geometryArgs)]}
