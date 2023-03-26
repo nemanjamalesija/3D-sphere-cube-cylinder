@@ -18,7 +18,7 @@ const Box = () => {
   const { rotation } = useRotation();
 
   return (
-    <mesh rotation={new Euler(...rotation)} position={[-2.5, 0, 0]} castShadow>
+    <mesh rotation={new Euler(...rotation)} position={[-4.5, 0, 0]} castShadow>
       <boxBufferGeometry
         attach='geometry'
         args={[...Object.values(geometryArgs)]}
