@@ -1,3 +1,4 @@
+import React, { useMemo } from 'react';
 import { useTexture } from '@react-three/drei';
 import { useRotation } from '../helpers/useRotation';
 import { Euler } from 'three';
@@ -9,7 +10,9 @@ function Sphere() {
   const { rotation } = useRotation();
   const { randomValue } = useCustomContext();
 
-  const geometryArgsSphere: sphereGeometryArgs = [randomValue, 64, 64];
+  const geometryArgsSphere: sphereGeometryArgs = useMemo(() => {
+    return [randomValue, 64, 64];
+  }, [randomValue]);
 
   return (
     <mesh rotation={new Euler(...rotation)} position={[0, 0, 0]} castShadow>
@@ -25,4 +28,4 @@ function Sphere() {
   );
 }
 
-export default Sphere;
+export default React.memo(Sphere);

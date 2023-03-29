@@ -1,3 +1,4 @@
+import React, { useMemo } from 'react';
 import { Euler } from 'three';
 import { useCustomContext } from '../context';
 import { useRotation } from '../helpers/useRotation';
@@ -7,13 +8,9 @@ const Cylinder = () => {
   const { rotation } = useRotation();
   const { randomValue } = useCustomContext();
 
-  const geometryArgsCylinder: cylinderGeometryArgs = [
-    1,
-    1,
-    randomValue,
-    28,
-    28,
-  ];
+  const geometryArgsCylinder: cylinderGeometryArgs = useMemo(() => {
+    return [1, 1, randomValue, 28, 28];
+  }, [randomValue]);
 
   return (
     <mesh rotation={new Euler(...rotation)} position={[20, 0, 0]} castShadow>
@@ -28,4 +25,4 @@ const Cylinder = () => {
   );
 };
 
-export default Cylinder;
+export default React.memo(Cylinder);

@@ -1,3 +1,4 @@
+import React, { useMemo } from 'react';
 import { Euler } from 'three';
 import { useCustomContext } from '../context';
 import { useRotation } from '../helpers/useRotation';
@@ -7,7 +8,10 @@ const Box = () => {
   const { rotation } = useRotation();
   const { randomValue } = useCustomContext();
 
-  const boxArgs: boxGeometryArgs = [randomValue, 4, 4];
+  const boxArgs: boxGeometryArgs = useMemo(
+    () => [randomValue, 4, 4],
+    [randomValue]
+  );
 
   return (
     <mesh rotation={new Euler(...rotation)} position={[-22, 0, 0]} castShadow>
@@ -17,4 +21,4 @@ const Box = () => {
   );
 };
 
-export default Box;
+export default React.memo(Box);

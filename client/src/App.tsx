@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber';
 import { io, Socket } from 'socket.io-client';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Stage, OrbitControls } from '@react-three/drei';
 import Box from './components/Box';
 import Sphere from './components/Sphere';
@@ -11,11 +11,22 @@ function App() {
   const { setRandomValue } = useCustomContext();
   const socket: Socket = io('http://localhost:3000');
 
+  const updateRandomValue = useCallback(
+    (value: number) => {
+      setRandomValue(value);
+    },
+    [setRandomValue]
+  );
+
   useEffect(() => {
     socket.on('basicEmit', (socket: number) => {
-      setRandomValue(socket);
+      updateRandomValue(socket);
     });
-  }, []);
+
+    return () => {
+      socket.close();
+    };
+  }, [updateRandomValue]);
 
   return (
     <Canvas
