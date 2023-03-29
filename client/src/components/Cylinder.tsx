@@ -9,7 +9,7 @@ const Cylinder = () => {
   const { randomValue } = useCustomContext();
 
   const geometryArgsCylinder: cylinderGeometryArgs = useMemo(() => {
-    return [1, 1, randomValue, 28, 28];
+    return [1, 1, randomValue, 24, 24];
   }, [randomValue]);
 
   return (

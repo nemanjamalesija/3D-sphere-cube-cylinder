@@ -11,7 +11,7 @@ function Sphere() {
   const { randomValue } = useCustomContext();
 
   const geometryArgsSphere: sphereGeometryArgs = useMemo(() => {
-    return [randomValue, 64, 64];
+    return [randomValue];
   }, [randomValue]);
 
   return (
