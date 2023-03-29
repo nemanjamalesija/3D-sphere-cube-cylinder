@@ -42,7 +42,6 @@ function App() {
           minPolarAngle={0}
           maxPolarAngle={Math.PI / 2}
         />
-        ;
       </>
     </Canvas>
   );

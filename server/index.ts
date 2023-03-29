@@ -27,10 +27,10 @@ const io = new Server<ClientToServerEvents, ServerToClientEvents>(server, {
 
 io.on('connection', (socket) => {
   setInterval(() => {
-    const randomValue = Number((Math.random() * 3.5 + 0.5).toFixed(2));
+    const randomValue = Number((Math.random() * 9.5 + 0.5).toFixed(2));
 
     socket.emit('basicEmit', randomValue, '2', Buffer.from([3]));
-  }, 5000);
+  }, 100);
 });
 
 server.listen(3000, () => {

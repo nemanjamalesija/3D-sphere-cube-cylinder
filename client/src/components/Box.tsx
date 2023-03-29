@@ -7,16 +7,11 @@ const Box = () => {
   const { rotation } = useRotation();
   const { randomValue } = useCustomContext();
 
-  const geometryArgsBox: boxGeometryArgs = {
-    width: randomValue,
-  };
+  const boxArgs: boxGeometryArgs = [randomValue, 4, 4];
 
   return (
-    <mesh rotation={new Euler(...rotation)} position={[-8, 0, 0]} castShadow>
-      <boxBufferGeometry
-        attach='geometry'
-        args={Object.values(geometryArgsBox)}
-      />
+    <mesh rotation={new Euler(...rotation)} position={[-22, 0, 0]} castShadow>
+      <boxGeometry attach='geometry' args={boxArgs} />
       <meshNormalMaterial attach='material' />
     </mesh>
   );

@@ -9,13 +9,11 @@ function Sphere() {
   const { rotation } = useRotation();
   const { randomValue } = useCustomContext();
 
-  const geometryArgsSphere: sphereGeometryArgs = {
-    radius: randomValue,
-  };
+  const geometryArgsSphere: sphereGeometryArgs = [randomValue, 64, 64];
 
   return (
-    <mesh rotation={new Euler(...rotation)} position={[-1, 0, 0]} castShadow>
-      <sphereBufferGeometry args={[...Object.values(geometryArgsSphere)]} />
+    <mesh rotation={new Euler(...rotation)} position={[0, 0, 0]} castShadow>
+      <sphereGeometry args={geometryArgsSphere} />
       <meshPhysicalMaterial
         map={texture}
         clearcoat={1}
