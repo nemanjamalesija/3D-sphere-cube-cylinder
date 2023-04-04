@@ -30,7 +30,7 @@ io.on('connection', (socket) => {
     const randomValue = Number((Math.random() * 9.5 + 0.5).toFixed(2));
 
     socket.emit('basicEmit', randomValue, '2', Buffer.from([3]));
-  }, 100);
+  }, 5000);
 });
 
 server.listen(3000, () => {
